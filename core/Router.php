@@ -15,15 +15,12 @@ class Router
     {
        
             try {
-                // Code that may throw an exception
-                // ...
-            $uri = $_GET["url"] ?? '';
-            // $uri= $_SERVER['REQUEST_URI'];
-            // $uri = strtolower($uri);
-            // $uri = trim($uri, '/');
-            // $uri = explode('/', $uri);
+              
+            // $uri = $_GET["url"] ?? '';
+            $uri= $_SERVER['REQUEST_URI'];
+        
             $uri= explode('/',trim(strtolower($uri),'/'));
-            // $a= array_splice($uri,0,1);
+            $a= array_splice($uri,0,1);
 
     
 
@@ -32,9 +29,7 @@ class Router
          
             $controller = $uri[0];
             unset($uri[0]);
-            // $controller = ucwords($controller);
-            // $controller = $controller . "Controller";
-            // $controller = 'App\Controller\\' . $controller;
+          
             $controller = 'App\Controller\\' . ucwords($controller).'Controller';
             if (class_exists($controller)) {
                 $this->controller = $controller;
@@ -58,11 +53,11 @@ class Router
       
             call_user_func_array([$class,$this->method],$this->param);
 
-            // If the above code is successful, perform the function call
+         
             
             } catch (Exception $e) {
 
-                // Handle the exception
+               
 
                 echo "failed " . $e->getMessage();
                 

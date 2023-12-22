@@ -89,14 +89,18 @@
         public function update($table, $data,$id)
         {
             $placeColumnsValues= implode(", ", array_map(function ($key, $value) {
-                return "$key=:$key";
+                return " $key = :$key ";
             }, array_keys($data), $data));
-           
-        
+           echo gettype($id) . "<br>" ;
+          var_dump(array_values($data));
+          echo "<br>";
+         var_dump($placeColumnsValues);
+         die();
             try {
-                $stmt = $this->db_database_connect->prepare("UPDATE  {$table} SET  ({$placeColumnsValues}) WHERE id =:id ");
+                $stmt = $this->db_database_connect->prepare("UPDATE  {$table} SET  ({$placeColumnsValues}) WHERE id = :id ");
                
-                foreach ($data as $key => $val) {
+                foreach ($data as $key => $val) 
+                {
                     echo $val . "  =  " . gettype($val) . "<br>";
                     $type = gettype($val);
                     switch ($type) {

@@ -21,8 +21,8 @@ class TeamController extends Controller
 
     public function addteam()
     {                           
-
-        $this->render("team", "create", "Add Users", array());
+       
+        $this->render("team", "create", "Add Users", null);
 
     }
 
@@ -41,6 +41,42 @@ class TeamController extends Controller
             $res = $team->addTeam($name, $description, $country);
 
 
+            if ($res) {
+
+                header('Location:../');
+                exit;
+            } else {
+
+                echo "Failed to add user.";
+            }
+        } else {
+
+            echo "Invalid request method.";
+        }
+    }
+
+    public function edit(int $id){
+        $team = new TeamModel();
+        $result = $team->oneTeam($id);
+        $this->render("team", "create", "Edit Users",$result);
+    }
+    public function updateteam(){
+        if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+
+            $name = $_POST['name'] ?? '';
+
+            $description = $_POST['description'] ?? '';
+
+            $country = $_POST['country'] ?? '';
+
+            $id = $_POST['id']+0 ?? '';
+
+            $team = new TeamModel();
+               
+
+            $res = $team->updateTeam($name, $description, $country,$id);
+ 
+             
             if ($res) {
 
                 header('Location:../');

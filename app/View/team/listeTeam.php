@@ -42,7 +42,7 @@ ob_start(); ?>
                             <td>
                                 <a href="?action=read&viewid=<?= $res->getId() ?>" class="view" title="View"
                                     data-toggle="tooltip"><i class="material-icons">&#xE417;</i>veiw</a>
-                                <a href="edit.php?editid=<?= $res->getId() ?>" class="edit" title="Edit"
+                                <a href="team/edit/<?= $res->getId() ?>" class="edit" title="Edit"
                                     data-toggle="tooltip"><i class="material-icons">&#xE254;</i>edit</a>
                                 <a href="team/destroy/<?= $res->getId() ?>" class="delete" title="Delete"
                                     data-toggle="tooltip" onclick="return confirm('Do you really want to Delete ?');"><i
