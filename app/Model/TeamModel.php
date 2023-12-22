@@ -1,0 +1,98 @@
+<?php
+namespace App\Model;
+use App\Orm\Orm;
+use \PDOException;
+use App\Classes\Team;
+class TeamModel
+{
+    private $teams = [];
+    private $con;
+    public function __construct() { 
+        $this->con = new Orm();
+    }
+
+    public function addTeam(
+        string $name
+        ,
+        string $description
+        ,
+        string $country
+     
+    ): bool {
+        try
+        {
+            $team = new Team(0,$this->input($name),$this->input($description),$this->input($country) ,null);
+    
+            $res = $this->con->insert(
+        
+                "teams",
+                ["name"=> $team->getName(), "description"=> $team->getDescription(),"country" => $team->getCountry() ]
+               
+            );
+    
+            return $res;
+        } catch (PDOException $e) {
+           
+            echo "Error adding Team: " . $e->getMessage();
+
+            return false;
+
+        }
+    }
+
+
+    public function allTeams() {
+        try {
+            
+            $res = $this->con->selectAll("teams");
+
+            foreach ($res as $r) 
+            {   
+                $team = new Team($r['id'],$r['name'],$r['country'],$r['description'],$r['ceated_at']);
+                array_push($this->teams,$team);
+            }
+             return $this->teams;
+        } 
+        catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    public function oneTeam($id)
+    {
+        try {
+                
+                $r = $this->con->selectOne("teams",$id);
+             
+                $team= new Team($r['id'],$r['name'],$r['country'] ,$r['description'],$r['ceated_at']);
+
+                return $team;
+                    
+            } 
+        catch (PDOException $e) {
+            echo $e->getMessage();
+            }
+    }
+    
+    public function deleteTser($id) {
+        try {
+                
+                
+                $r = $this->con->delete("teams",$id);
+             
+                return $r;
+                    
+            } 
+        catch (PDOException $e) {
+            echo $e->getMessage();
+            }
+    }
+
+    public  function  input($data) 
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+      }
+
+}
