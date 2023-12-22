@@ -42,7 +42,8 @@ class TeamController extends Controller
 
 
             if ($res) {
-
+                session_start();
+                $_SESSION['message']="team added with succes";
                 header('Location:../');
                 exit;
             } else {
@@ -78,7 +79,8 @@ class TeamController extends Controller
  
              
             if ($res) {
-
+                  session_start();
+                  $_SESSION['message']="team updated with succes";
                 header('Location:../');
                 exit;
             } else {
@@ -90,13 +92,17 @@ class TeamController extends Controller
             echo "Invalid request method.";
         }
     }
-    public function view(){
-
+    public function view($id){
+        $team = new TeamModel();
+        $result = $team->oneTeam($id);
+        $this->render("team", "read", "Read User",$result);
     }
     public function destroy($id){
         $team =  new TeamModel();
         $res =  $team->deleteTeam($id);
         if($res){
+            session_start();
+            $_SESSION['message']="team deleted with succes";
               header("Location:../../");
         }else echo 'something is wrong';
     }

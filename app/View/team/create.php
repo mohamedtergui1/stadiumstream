@@ -22,12 +22,12 @@
 		<input type="hidden" name="id" value="<?= $result ? $result->getId() : ''?>" >
       
 		<div class="form-group">
-            <button type="submit" class="btn btn-success btn-lg btn-block" name="submit">Submit</button>
+            <button type="submit" class="btn btn-success btn-lg btn-block" name="submit"><?= $result ? 'UPDATE' : 'ADD'?></button>
         </div>
 
     </form>
 
-	<div class="text-center">View Aready Inserted Data!!  <a href="../../">View</a></div>
+	<div class="text-center">View Allready Inserted Data!!  <a href="../../">View</a></div>
     
 </div>
 
