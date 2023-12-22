@@ -15,9 +15,11 @@
 
 </head>
 <body>
+
+
   <!-- nav bar  for example its not match with this mini project-->
 <?php include '../app/View/include/navbar.php'; ?>
-<div  style="height:10%; background-color:red;" > jus exampl for  navbar </div>
+
 <!-- nav bar  -->
 
 
@@ -27,7 +29,6 @@
   <?=$body?>
 
 
-<div  style="height:10%; background-color:red;" > jus exampl for  footer </div>
 
 <?php  
 // include your footer that just a exampl

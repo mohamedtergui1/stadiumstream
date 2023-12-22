@@ -48,7 +48,7 @@ class TeamModel
 
             foreach ($res as $r) 
             {   
-                $team = new Team($r['id'],$r['name'],$r['country'],$r['description'],$r['ceated_at']);
+                $team = new Team($r['id'],$r['name'],$r['country'],$r['description'],$r['created_at']);
                 array_push($this->teams,$team);
             }
              return $this->teams;
@@ -73,7 +73,7 @@ class TeamModel
             }
     }
     
-    public function deleteTser($id) {
+    public function deleteTeam($id) {
         try {
                 
                 
