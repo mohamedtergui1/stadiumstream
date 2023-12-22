@@ -86,44 +86,40 @@
         }
         
     
-        public function update($table, $data,$id)
-        {
-            $placeColumnsValues= implode(", ", array_map(function ($key, $value) {
-                return " $key = :$key ";
-            }, array_keys($data), $data));
-           echo gettype($id) . "<br>" ;
-          var_dump(array_values($data));
-          echo "<br>";
-         var_dump($placeColumnsValues);
-         die();
-            try {
-                $stmt = $this->db_database_connect->prepare("UPDATE  {$table} SET  ({$placeColumnsValues}) WHERE id = :id ");
-               
-                foreach ($data as $key => $val) 
-                {
-                    echo $val . "  =  " . gettype($val) . "<br>";
-                    $type = gettype($val);
-                    switch ($type) {
-                        case "integer":
-                            $stmt->bindValue(":$key", $val, PDO::PARAM_INT);
-                            break;
-        
-                        case "boolean":
-                            $stmt->bindValue(":$key", $val, PDO::PARAM_BOOL);
-                            break;
-        
-                        default:
-                            $stmt->bindValue(":$key", $val, PDO::PARAM_STR);
-                    }
-                }
-                $stmt->bindValue(":id", $id, PDO::PARAM_INT);
-               $stmt = $stmt->execute();
-                return $stmt;
-            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
-                return false;
+        public function update($table, $data, $id)
+{
+    $placeColumnsValues = implode(", ", array_map(function ($key, $value) {
+        return " $key = :$key ";
+    }, array_keys($data), $data));
+
+    try {
+        $stmt = $this->db_database_connect->prepare("UPDATE {$table} SET {$placeColumnsValues} WHERE id = :id");
+
+        foreach ($data as $key => $val) {
+            echo $val . "  =  " . gettype($val) . "<br>";
+            $type = gettype($val);
+            switch ($type) {
+                case "integer":
+                    $stmt->bindValue(":$key", $val, PDO::PARAM_INT);
+                    break;
+
+                case "boolean":
+                    $stmt->bindValue(":$key", $val, PDO::PARAM_INT);
+                    break;
+
+                default:
+                    $stmt->bindValue(":$key", $val, PDO::PARAM_STR);
             }
         }
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+        $success = $stmt->execute();
+        return $success;
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+
         public function delete($table, $id)
         {
             try {

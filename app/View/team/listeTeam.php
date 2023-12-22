@@ -40,7 +40,7 @@ ob_start(); ?>
                             <td><?= $res->getCreatedAt() ?></td>
 
                             <td>
-                                <a href="?action=read&viewid=<?= $res->getId() ?>" class="view" title="View"
+                                <a href="team/view/<?= $res->getId() ?>" class="view" title="View"
                                     data-toggle="tooltip"><i class="material-icons">&#xE417;</i>veiw</a>
                                 <a href="team/edit/<?= $res->getId() ?>" class="edit" title="Edit"
                                     data-toggle="tooltip"><i class="material-icons">&#xE254;</i>edit</a>

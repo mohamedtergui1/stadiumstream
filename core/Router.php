@@ -57,8 +57,6 @@ class Router
             
             } catch (Exception $e) {
 
-               
-
                 echo "failed " . $e->getMessage();
                 
             }

@@ -2,7 +2,7 @@
 <?php  ob_start();  ?>
 <div class="signup-form">
 
-    <form action="<?= $result ?   '../updateteam/'  : '../insertteam' ?>" method="post">
+    <form action="<?= $result ?   '../updateteam'  : '../insertteam' ?>" method="post">
 
 		<h2><?=$title?></h2>
 

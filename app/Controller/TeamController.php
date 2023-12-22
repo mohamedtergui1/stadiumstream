@@ -30,11 +30,11 @@ class TeamController extends Controller
     {
         if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
-            $name = $_POST['name'] ?? '';
+            $name = $_POST['name'] ;
 
-            $description = $_POST['description'] ?? '';
+            $description = $_POST['description'] ;
 
-            $country = $_POST['country'] ?? '';
+            $country = $_POST['country'] ;
 
             $team = new TeamModel();
 
@@ -63,13 +63,13 @@ class TeamController extends Controller
     public function updateteam(){
         if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
-            $name = $_POST['name'] ?? '';
+            $name = $_POST['name'] ;
 
-            $description = $_POST['description'] ?? '';
+            $description = $_POST['description'] ;
 
-            $country = $_POST['country'] ?? '';
+            $country = $_POST['country'] ;
 
-            $id = $_POST['id']+0 ?? '';
+            $id = $_POST['id']+0 ;
 
             $team = new TeamModel();
                
@@ -89,6 +89,9 @@ class TeamController extends Controller
 
             echo "Invalid request method.";
         }
+    }
+    public function view(){
+
     }
     public function destroy($id){
         $team =  new TeamModel();
